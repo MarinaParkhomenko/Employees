@@ -12,7 +12,7 @@ namespace Employees
     {
         public async Task<Location> GetLocation(string ipAddress)
         {
-            string url = "https://api.freegeoip.app/json/" + ipAddress + "?apikey=9d3e9000-b02d-11ec-aab3-63ab906ab27a";
+            string url = "https://api.freegeoip.app/json/" + ipAddress + "";
 
             using (HttpClient client = new HttpClient())
             {
