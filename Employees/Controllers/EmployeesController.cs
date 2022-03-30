@@ -66,17 +66,17 @@ namespace Employees.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,Name,Surname,BirthDate,PositionId,IPaddress,IPcountryCode")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,Name,Surname,BirthDate,PositionId,IPaddress")] Employee employee)
         {
+            FreeGeoIPClient client = new FreeGeoIPClient();
+            Location location = client.GetLocation(employee.IPaddress).Result;
+            employee.IPcountryCode = location.CountryCode;
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            string messages = string.Join("; ", ModelState.Values
-                                        .SelectMany(x => x.Errors)
-                                        .Select(x => x.ErrorMessage));
             ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "PositionId", "PositionId", employee.PositionId);
             return View(employee);
         }
@@ -104,13 +104,16 @@ namespace Employees.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,Name,Surname,BirthDate,PositionId,IPaddress,IPcountryCode")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,Name,Surname,BirthDate,PositionId,IPaddress")] Employee employee)
         {
             if (id != employee.EmployeeId)
             {
                 return NotFound();
             }
 
+            FreeGeoIPClient client = new FreeGeoIPClient();
+            Location location = client.GetLocation(employee.IPaddress).Result;
+            employee.IPcountryCode = location.CountryCode;
             if (ModelState.IsValid)
             {
                 try

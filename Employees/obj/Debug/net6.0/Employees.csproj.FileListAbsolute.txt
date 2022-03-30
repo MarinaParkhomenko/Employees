@@ -261,3 +261,4 @@ C:\Users\Maryna Parkhomenko\source\repos\Employees\Employees\bin\Debug\net6.0\zh
 C:\Users\Maryna Parkhomenko\source\repos\Employees\Employees\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\Maryna Parkhomenko\source\repos\Employees\Employees\bin\Debug\net6.0\runtimes\win-arm\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Maryna Parkhomenko\source\repos\Employees\Employees\bin\Debug\net6.0\runtimes\win-arm64\lib\net6.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\Maryna Parkhomenko\source\repos\Employees\Employees\bin\Debug\net6.0\FreeGeoIPCore.dll
